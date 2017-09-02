@@ -1,0 +1,23 @@
+<modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Enviar Mensagem</h4>
+    </modal-header>
+    <modal-body>
+      <form role="form">
+        <div class="form-group">
+          <label for="assunto">Assunto</label>
+            <input [(ngModel)]="assunto" type="text" class="form-control"
+            id="assunto" placeholder="Assunto da mensagem" name="assunto"/>
+        </div>
+        <div class="form-group">
+          <label for="assunto">Mensagem</label>
+            <textarea [(ngModel)]="mensagem" rows="10" class="form-control"
+            id="mensagem" placeholder="Digite sua mensagem" name="mensagem"> </textarea>
+        </div>
+      </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+      <button class="btn btn-primary" type="reset">Limpar campos</button>
+      <button class="btn btn-success" (click)="enviarMensagem()">Enviar</button>
+    </modal-footer>
+</modal>

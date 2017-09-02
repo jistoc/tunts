@@ -1,0 +1,37 @@
+<div *ngIf="titulo" class="container">
+		<div class="row">
+			<img style="margin-top:15px" class="col-md-12 img-responsive" src="{{imagem}}" alt="imagem de fundo"/>
+		</div>
+		<div class="row">
+			<div class="col-md-8 p-conteudo" >
+				<h2>{{titulo}}</h2>
+				<hr>
+				<p class="text-justify">{{descricao}}</p>
+			</div>
+			<div class="col-md-4">
+				<h2>Informações</h2>
+				<hr>
+				<div class="infop">
+				<p><strong>Estrelas: </strong>
+				<span>
+					<i class="fa fa-star am" aria-hidden="true"></i>
+					<i class="fa fa-star am" aria-hidden="true"></i>
+					<i class="fa fa-star am" aria-hidden="true"></i>
+					<i class="fa fa-star am" aria-hidden="true"></i>
+					<i class="fa fa-star am" aria-hidden="true"></i>
+				</span>
+				</p>
+				<p><strong>Telefone: </strong><span>{{telefone}}</span></p>
+
+				</div>
+				<p *ngIf="this.autenticacao.loggedIn()"><a (click)="open()" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar mensagem</a></p>
+				<app-modal-mensagem></app-modal-mensagem>
+				<p><strong> QR Code: </strong><p>
+				<p><ngx-qrcode [qrc-element-type]="url" [qrc-value]="qrCodeURL" ></ngx-qrcode></p>
+			<br>
+
+			</div>
+		</div>
+	</div>
+<div *ngIf="!titulo" class="text-center"> <br><br>Anunciante não encontrado!</div>
+<app-rodape></app-rodape>

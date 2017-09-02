@@ -1,0 +1,31 @@
+{
+  "name": "tunts",
+  "version": "1.0.0",
+  "description": "tunts eventos",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "keywords": [
+    "eventos",
+    "mean",
+    "express",
+    "mongo"
+  ],
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "crypto": "0.0.3",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "^4.10.8",
+    "nodemailer": "^4.0.1",
+    "passport": "*",
+    "passport-jwt": "*",
+    "xoauth2": "^1.2.0"
+  },
+  "author": "rafael e felipe",
+  "license": "ISC"
+}

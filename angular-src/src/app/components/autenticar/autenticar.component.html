@@ -1,0 +1,74 @@
+
+
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog"
+		     aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	      <div class="modal-content">
+	          <!-- Modal Header -->
+	          <div class="modal-header">
+	              <button type="button" class="close"
+	                 data-dismiss="modal">
+	                     <span aria-hidden="true">&times;</span>
+	                     <span class="sr-only">Close</span>
+	              </button>
+	              <h4 class="modal-title" id="myModalLabel">
+	                  <p *ngIf="op" >Reenviar confirmação</p>
+										<p *ngIf="!op">Redefinir senha</p>
+	              </h4>
+	          </div>
+	          <div class="modal-body">
+	              <form role="form">
+	                <div class="form-group">
+	                  <label for="email">Email</label>
+	                    <input [(ngModel)]="rmail" type="rmail" class="form-control"
+	                    id="rmail" placeholder="Seu e-mail" name="rmail"/>
+	                </div>
+	              </form>
+	          </div>
+	          <div class="modal-footer">
+	              <button type="button" class="btn btn-primary" (click)="enviar()" data-dismiss="modal" >Enviar</button>
+	          </div>
+	      </div>
+	  </div>
+</div>
+<div class="container" id="form-cadastro">
+	<div class="row">
+		<legend>Acesse sua conta</legend>
+		<div class="col-md-6 col-md-offset-3">
+			<flash-messages></flash-messages>
+		</div>
+	</div>
+	<div class="row" id="row-cadastro">
+
+		<form class="form-horizontal" (ngSubmit)="autenticarUsuario()">
+      <fieldset>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="usuario">Usuário</label>
+          <div class="col-md-6">
+            <input [(ngModel)]="usuario" id="usuario" name="usuario" type="text" placeholder="Usuário de acesso" required class="form-control input-md">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="senha" required>Senha</label>
+          <div class="col-md-6">
+              <input [(ngModel)]="senha" id="senha" name="senha" type="password" placeholder="Senha" class="form-control input-md" required>
+							<a (click)="confirmacao(0)" data-toggle="modal" data-target="#myModalNorm"  class="pull-right">Esqueci a senha</a>
+							<br>
+							<a (click)="confirmacao(1)" data-toggle="modal" data-target="#myModalNorm" class="pull-right">Re-enviar confirmaçao</a>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="acessar"></label>
+	        <div class="col-md-6 text-right">
+	          <a [routerLink]="['/cadastro-usuario']" class="btn btn-info ">Criar conta</a>
+	          <button id="cadastrar" name="acessar" class="btn btn-success" type="submit">Acessar</button>
+
+	        </div>
+      	</div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+<app-rodape></app-rodape>

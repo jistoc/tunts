@@ -1,0 +1,24 @@
+
+  <nav class="navbar navbar-static-top navbar-inverse" id="nav">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu_collapse" aria-expanded="false">
+          <span class="sr-only">Alternar navegação</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" id="brand" [routerLink]="['/']">Tunts</a>
+      </div>
+      <div class="collapse navbar-collapse" id="menu_collapse">
+        <ul class="nav navbar-nav navbar-right" id="menu">
+          <li><a [routerLinkActive]="['active']" [routerLink]="['/sobre']">Quem somos</a></li>
+          <li><a [routerLinkActive]="['active']" [routerLink]="['/contato']">Contato</a></li>
+
+          <li *ngIf="this.autenticacao.loggedIn()"  ><a [routerLinkActive]="['active']" [routerLink]="['/perfil']" >Minha conta</a></li>
+          <li *ngIf="!autenticacao.loggedIn()"  ><a [routerLinkActive]="['active']" [routerLink]="['/autenticar']" >Acesso</a></li>
+          <li *ngIf="this.autenticacao.loggedIn()"><a (click)="sair()" href="#">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,98 @@
+
+<div class="container" id="form-cadastro">
+	<div class="row">
+		<legend>Cadastro de usuários</legend>
+		<div class="col-md-6 col-md-offset-3">
+			<flash-messages></flash-messages>
+		</div>
+	</div>
+	<div class="row" id="row-cadastro">
+
+		<form class="form-horizontal" (ngSubmit)="cadastrarUsuario(form)" #form="ngForm" name="form">
+      <fieldset>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="nome">Nome</label>
+          <div class="col-md-6">
+            <input  [(ngModel)]="nome" id="nome" name="nome" type="text" placeholder="Seu nome" required class="form-control input-md">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="usuario">Usuário</label>
+          <div class="col-md-6">
+            <input [(ngModel)]="usuario" id="usuario" name="usuario" type="text" placeholder="Usuário de acesso" required class="form-control input-md">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="email">E-mail</label>
+          <div class="col-md-6">
+            <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="Seu e-mail" required class="form-control input-md">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="cpf">CPF</label>
+          <div class="col-md-6">
+            <input [textMask]="{mask: masccpf}" [(ngModel)]="cpf" id="cpf" name="cpf" type="text" placeholder="Seu CPF" required class="form-control input-md">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="uf">Estado</label>
+          <div class="col-md-6">
+            <select [(ngModel)]="uf" id="uf" name="uf" (ngModelChange)="uf = $event; segundo.selectedIndex = 0" #primeiro required class="form-control input-md">
+							<option  selected value="0">--Selecione o estado--</option>
+							<option *ngFor="let estado of estados"
+								    [attr.value]="estado.nome">
+								  {{estado.nome}}
+								</option>
+
+						</select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="cidade">Cidade</label>
+          <div class="col-md-6">
+            <select [(ngModel)]="cidade" id="cidade" name="cidade" ngControl="cidade" #segundo required class="form-control input-md">
+
+								<option selected value="0">--Selecione a cidade--</option>
+								<ng-container *ngIf='primeiro.selectedIndex > 0'>
+
+								<option *ngFor="let cidade of estados[primeiro.selectedIndex-1].cidades" [attr.value]="cidade">{{cidade}}</option>
+								</ng-container>
+						</select>
+          </div>
+        </div>
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="cidade">Data de nascimento</label>
+					<div class="col-md-6">
+						<my-date-picker name="nascimento" [options]="myDatePickerOptions"
+																[(ngModel)]="nascimento" required></my-date-picker>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="senha" required>Senha</label>
+					<div class="col-md-6">
+							<input [(ngModel)]="senha" id="senha" name="senha" type="password" placeholder="Senha" class="form-control input-md" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label" for="confirmarSenha">Confirmar senha</label>
+					<div class="col-md-6">
+						<input [(ngModel)]="confirmarSenha" id="confirmarSenha" name="confirmarSenha" type="password" placeholder="Confirmar senha" class="form-control input-md" required>
+					</div>
+				</div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="Cadastrar"></label>
+        <div class="col-md-6 text-right	">
+          <button id="limpar" name="limpar" class="btn btn-info" (click)="teste()">Limpar campos</button>
+          <button id="cadastrar" name="cadastrar" class="btn btn-success ">Cadastrar</button>
+        </div>
+      </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+<br>
+<app-rodape></app-rodape>

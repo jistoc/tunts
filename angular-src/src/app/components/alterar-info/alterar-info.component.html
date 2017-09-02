@@ -1,0 +1,124 @@
+<div *ngIf="usuario">
+  <div class="container">
+      <br><br>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="list-group">
+            <a [routerLink]="['/perfil']" class="list-group-item active">
+              Bem vindo {{usuario.nome}}
+            </a>
+            <a [routerLink]="['/perfil']" class="list-group-item">
+              Pesquisar itens
+            </a>
+            <a href="#" class="list-group-item">Mensagens <span class="badge">0</span></a>
+            <a href="#" class="list-group-item">Meus eventos <span class="badge">0</span></a>
+            <a *ngIf="usuario.cnpj!=usuario.login"  [routerLink]="['/editar-pagina']" class="list-group-item">Página de anúncio</a>
+            <a [routerLink]="['/alterar-info']" class="list-group-item" id="mActive">Dados cadastrais</a>
+          </div>
+        </div>
+          <div class="col-md-8">
+            <flash-messages>
+            </flash-messages>
+          </div>
+        <div class="col-md-4">
+        		<legend>Alterar Informações</legend>
+          <form class="form-horizontal" (ngSubmit)="alterarUsuario(form)" #form="ngForm" name="form">
+            <fieldset>
+
+              <input type="hidden" name="login" [(ngModel)]="login" />
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class=" control-label" for="email">E-mail</label>
+                  <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="Seu e-mail" required class="form-control input-md">
+                </div>
+              </div>
+
+
+              <div class="form-group">
+
+                <div class="col-md-12">
+                  <label class="control-label" for="uf">Estado</label>
+                  <select [(ngModel)]="uf" id="uf" name="uf" (ngModelChange)="uf = $event; segundo.selectedIndex = 0" #primeiro required class="form-control input-md">
+      							<option value="0">--Selecione o estado--</option>
+      							<option *ngFor="let estado of estados"
+      								    [attr.value]="estado.nome" [attr.selected]="usuario.uf == estado.nome ? true : null">
+      								  {{estado.nome}}
+      							</option>
+      						</select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="control-label" for="cidade">Cidade</label>
+                  <select [(ngModel)]="cidade" id="cidade" name="cidade" ngControl="cidade" #segundo required class="form-control input-md">
+
+      								<option selected value="0">--Selecione a cidade--</option>
+      								<ng-container *ngIf='primeiro.selectedIndex > 0 || true'>
+
+      								<option *ngFor="let c of estados[primeiro.selectedIndex-1].cidades" [attr.value]="c" [attr.selected]="usuario.cidade == c ? true : null">{{c}}</option>
+      								</ng-container>
+      						</select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label" for="senha" required>Senha</label>
+                    <input [(ngModel)]="senha" id="senha" name="senha" type="password" placeholder="Senha" class="form-control input-md" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="control-label" for="confirmarSenha">Confirmar senha</label>
+                  <input [(ngModel)]="confirmarSenha" id="confirmarSenha" name="confirmarSenha" type="password" placeholder="Confirmar senha" class="form-control input-md" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+              <div class="col-md-12 text-right">
+                <label class="control-label" for="alterar"></label>
+                <button id="alterar" name="alterar" class="btn btn-success ">Alterar</button>
+              </div>
+            </div>
+
+            </fieldset>
+          </form>
+        </div>
+        <div  class="col-md-4">
+        		<legend>Quero me tornar anunciante</legend>
+          <form class="form-horizontal" (ngSubmit)="registrarAnunciante(form)" #form="ngForm" name="form">
+            <fieldset>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="control-label" for="cnpj">CNPJ</label>
+                  <input [textMask]="{mask: mascnpj}" [(ngModel)]="cnpj" id="cnpj" name="cnpj" type="text" placeholder="CNPJ" required class="form-control input-md">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="control-label" for="razao">Razão Social</label>
+                  <input [(ngModel)]="razao" id="razao" name="razao" type="text" placeholder="Razão Social" required class="form-control input-md">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="control-label" for="telefone">Telefone</label>
+                  <input [textMask]="{mask: masctel}" [(ngModel)]="telefone" id="telefone" name="telefone" type="tel" placeholder="(DD) 99999-9999" pattern="^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$" required class="form-control input-md">
+                </div>
+              </div>
+              <div class="form-group">
+              <div class="col-md-12 text-right">
+                <label class="control-label" for="alterar"></label>
+                <button *ngIf="usuario.cnpj==usuario.login" id="alterar" name="alterar" class="btn btn-success ">Registrar</button>
+                <button *ngIf="usuario.cnpj!=usuario.login" id="alterar" name="alterar" class="btn btn-success ">Salvar</button>
+              </div>
+            </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+<app-rodape></app-rodape>

@@ -1,0 +1,51 @@
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<flash-messages></flash-messages>
+		</div>
+	</div>
+	<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" (ngSubmit)="enviarEmail(form)" #form="ngForm" name="form"  >
+          <fieldset>
+            <legend class="text-center">Contato</legend>
+
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Seu nome</label>
+              <div class="col-md-9">
+                <input  [(ngModel)]="nome" id="nome" name="nome" type="text" placeholder="Seu nome" class="form-control">
+              </div>
+            </div>
+
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Seu e-mail</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="email" id="email" name="email" type="text" placeholder="Seu email" class="form-control">
+              </div>
+            </div>
+
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Sua mensagem</label>
+              <div class="col-md-9">
+                <textarea   [(ngModel)]="mensagem" class="form-control" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." rows="5"></textarea>
+              </div>
+            </div>
+
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+	</div>
+</div>
+<app-rodape></app-rodape>
