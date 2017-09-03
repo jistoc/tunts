@@ -1,7 +1,7 @@
 const mongoose =  require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/banco');
-const mail = require('../model/mail');
+const mail = require('../models/mail');
 const crypto = require('crypto');
 //esquema
 

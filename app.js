@@ -6,9 +6,10 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/banco');
+const morgan = require('morgan');
 
 
-//conectando mongo com as configuracoes do arquivo e verificanco conexao
+//mongoose / banco
 mongoose.Promise = global.Promise;
 
 mongoose.connect(config.database);
@@ -23,11 +24,11 @@ mongoose.connection.on('err', (err) =>{
 const app = express();
 
 //definindo arquivos a variaveis
-const usuario = require('./router/usuario');
-const mail = require('./router/mail');
-const anunciante = require('./router/anunciante');
+const usuario = require('./routes/usuario');
+const mail = require('./routes/mail');
+const anunciante = require('./routes/anunciante');
 //definindo porta
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //cors
 app.use(cors());
@@ -48,13 +49,15 @@ app.use('/usuario', usuario);
 app.use('/mail', mail);
 app.use('/anunciante', anunciante);
 
+// logger
+app.use(morgan('dev'));
 
-
+//outras rotas
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname,'public/index.html'));
 });
 
-//iniciando
+//iniciando aplicação
 app.listen(port, () => {
 	console.log("Iniciado na porta "+port);
 });

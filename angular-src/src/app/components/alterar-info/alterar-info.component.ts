@@ -72,7 +72,7 @@ export class AlterarInfoComponent implements OnInit {
         if(data.success){
           this.flashMessage.show("Registro realizado com sucesso! Redirecionando...", {cssClass: 'alert-success', timeout: 5000});
           setTimeout((router: Router) => {
-             this.router.navigate(['alterar-info']);
+             window.location.replace('http://localhost:4200/editar-pagina');
            }, 2000);
         } else {
           this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
