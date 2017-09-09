@@ -15,7 +15,7 @@
           <li><a [routerLinkActive]="['active']" [routerLink]="['/sobre']">Quem somos</a></li>
           <li><a [routerLinkActive]="['active']" [routerLink]="['/contato']">Contato</a></li>
 
-          <li *ngIf="this.autenticacao.loggedIn()"  ><a [routerLinkActive]="['active']" [routerLink]="['/perfil']" >Minha conta</a></li>
+          <li *ngIf="this.autenticacao.loggedIn()"  ><a [routerLinkActive]="['active']" [routerLink]="['/home']" >Minha conta</a></li>
           <li *ngIf="!autenticacao.loggedIn()"  ><a [routerLinkActive]="['active']" [routerLink]="['/autenticar']" >Acesso</a></li>
           <li *ngIf="this.autenticacao.loggedIn()"><a (click)="sair()" href="#">Sair</a></li>
         </ul>

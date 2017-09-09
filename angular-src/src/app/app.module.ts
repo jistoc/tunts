@@ -28,6 +28,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { TextMaskModule } from 'angular2-text-mask';
 import { EditarPaginaComponent } from './components/editar-pagina/editar-pagina.component';
 import { PaginaAnuncianteComponent } from './components/pagina-anunciante/pagina-anunciante.component';
+import { PrincipalComponent } from './components/principal/principal.component';
+import { MensagensComponent } from './components/mensagens/mensagens.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
@@ -39,7 +41,9 @@ const appRoutes: Routes = [
   {path:'ativar',component:AtivarComponent},
   {path:'alterar-info',component:AlterarInfoComponent, canActivate:[AuthGuard]},
   {path:'editar-pagina',component:EditarPaginaComponent, canActivate:[AuthGuard]},
-  {path:'a/:anunciante',component:PaginaAnuncianteComponent}
+  {path:'a/:anunciante',component:PaginaAnuncianteComponent},
+  {path:'home',component:PrincipalComponent},
+  {path:'u/mensagens',component:MensagensComponent}
 ];
 @NgModule({
   declarations: [
@@ -56,7 +60,9 @@ const appRoutes: Routes = [
     AtivarComponent,
     EditarPaginaComponent,
     PaginaAnuncianteComponent,
-    ModalMensagemComponent
+    ModalMensagemComponent,
+    PrincipalComponent,
+    MensagensComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+<br><br>
+<div class="container">
+	<div class="row">
+		<app-perfil></app-perfil>
+		<div class="col-md-9">
+			<legend>Mensagens</legend>
+		    <table class="table condensed">
+		    	<thead>
+		    		<tr>
+			    		<th>Remetente</th>
+			    		<th>Assunto</th>
+			    		<th>Data</th>
+			    		<th>Opções</th>
+			    	</tr>
+		    	</thead>
+		    	<tbody>
+		    		<tr *ngFor="let m of msgs">
+		    			<td>{{m.origem}}</td>
+		    			<td>{{m.assunto}}</td>
+		    			<td>{{m.data}}</td>
+		    			<td>
+		    				<button class="btn btn-info" [attr.data-value]="m._id" ><i class="fa fa-file-text-o" aria-hidden="true" > </i> Ler</button>
+		    				<button class="btn btn-danger" [attr.data-value]="m._id"><i class="fa fa-trash" aria-hidden="true"> </i> Apagar</button>
+		    			</td>
+		    		</tr>
+		    	</tbody>
+		    </table>
+		</div>
+	</div>
+</div>
+
+<app-rodape></app-rodape>

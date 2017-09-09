@@ -27,6 +27,7 @@ const app = express();
 const usuario = require('./routes/usuario');
 const mail = require('./routes/mail');
 const anunciante = require('./routes/anunciante');
+const mensagem = require('./routes/mensagem');
 //definindo porta
 const port = process.env.PORT || 3000;
 
@@ -48,6 +49,7 @@ require('./config/passport')(passport);
 app.use('/usuario', usuario);
 app.use('/mail', mail);
 app.use('/anunciante', anunciante);
+app.use('/mensagem', mensagem);
 
 // logger
 app.use(morgan('dev'));

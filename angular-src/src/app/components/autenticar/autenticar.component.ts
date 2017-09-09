@@ -74,7 +74,7 @@ export class AutenticarComponent implements OnInit {
        this.autenticacao.autenticarUsuario(usuario).subscribe(data => {
          if(data.success){
             this.autenticacao.salvarInformacoesUsuario(data.token,data.usuario);
-            this.router.navigate(['perfil']);
+            this.router.navigate(['home']);
          } else {
             this.flashMessage.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
          }

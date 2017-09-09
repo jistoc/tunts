@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
   confirmarSenha: String;
   uf: String;
   cidade: String;
+  novasMsg : String;
 
   constructor(private autenticacao:AutenticacaoService,private router:Router) {
 
@@ -27,6 +28,9 @@ export class PerfilComponent implements OnInit {
         this.nome = perfil.user.nome;
         this.uf = perfil.user.uf;
         this.cidade = perfil.user.cidade;
+        this.autenticacao.getNovasMensagens(perfil.user.login).subscribe(total => {
+          this.novasMsg = total;
+        })
       },
       err => {
         console.log(err);

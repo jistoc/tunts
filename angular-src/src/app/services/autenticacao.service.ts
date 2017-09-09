@@ -70,6 +70,25 @@ export class AutenticacaoService {
     return this.http.get('http://localhost:3000/usuario/perfil',{headers: headers})
       .map(res => res.json());
   }
+
+  getNovasMensagens(usuario){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    let end = 'http://localhost:3000/mensagem/'+usuario+'/1';
+    return this.http.get(end,{headers: headers})
+      .map(res => res.json());
+  }
+  getMensagensRecebidas(usuario){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    let end = 'http://localhost:3000/mensagem/'+usuario+'/recebidas';
+    return this.http.get(end,{headers: headers})
+      .map(res => res.json());
+  }
   getAnunciante(anunciante){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
