@@ -89,6 +89,22 @@ export class AutenticacaoService {
     return this.http.get(end,{headers: headers})
       .map(res => res.json());
   }
+  setMensagem(mensagem){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:3000/mensagem/',mensagem,{headers: headers})
+      .map(res => res.json());
+  }
+  removerMensagem(id){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.delete('http://localhost:3000/mensagem/'+id,{headers: headers})
+      .map(res => res.json());
+  }
   getAnunciante(anunciante){
     let headers = new Headers();
     headers.append('Content-Type','application/json');

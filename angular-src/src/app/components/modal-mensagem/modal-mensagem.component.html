@@ -4,6 +4,15 @@
     </modal-header>
     <modal-body>
       <form role="form">
+      <flash-messages></flash-messages>
+        <div class="form-group">
+          <label for="assunto">Destino</label>
+            <input [(ngModel)]="origem"  type="hidden" 
+            id="origem" name="origem"/>
+
+            <input [(ngModel)]="destino"  ng-disabled="this.destino.length>2" type="text" class="form-control"
+            id="destino" placeholder="Destino" name="destino"/>
+        </div>
         <div class="form-group">
           <label for="assunto">Assunto</label>
             <input [(ngModel)]="assunto" type="text" class="form-control"

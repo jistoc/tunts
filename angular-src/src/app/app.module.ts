@@ -30,6 +30,7 @@ import { EditarPaginaComponent } from './components/editar-pagina/editar-pagina.
 import { PaginaAnuncianteComponent } from './components/pagina-anunciante/pagina-anunciante.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { MensagensComponent } from './components/mensagens/mensagens.component';
+import { ModalLrmComponent } from './components/modal-lrm/modal-lrm.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     PaginaAnuncianteComponent,
     ModalMensagemComponent,
     PrincipalComponent,
-    MensagensComponent
+    MensagensComponent,
+    ModalLrmComponent
   ],
   imports: [
     BrowserModule,

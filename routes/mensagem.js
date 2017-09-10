@@ -7,7 +7,11 @@ const jwt = require('jsonwebtoken');
 
 
 router.route('/')
-	  .post(passport.authenticate('jwt', {session:false}),MensagemController.setMensagem);
+	  .post(MensagemController.setMensagem);
+
+
+router.route('/:id')
+	  .delete(passport.authenticate('jwt', {session:false}),MensagemController.unsetMensagem);
 
 router.route('/:usuario/enviadas')
 	  .get(passport.authenticate('jwt', {session:false}),MensagemController.getEnviadas);

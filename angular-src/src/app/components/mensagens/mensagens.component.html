@@ -4,6 +4,7 @@
 		<app-perfil></app-perfil>
 		<div class="col-md-9">
 			<legend>Mensagens</legend>
+			<flash-messages></flash-messages>
 		    <table class="table condensed">
 		    	<thead>
 		    		<tr>
@@ -13,14 +14,14 @@
 			    		<th>Opções</th>
 			    	</tr>
 		    	</thead>
-		    	<tbody>
-		    		<tr *ngFor="let m of msgs">
-		    			<td>{{m.origem}}</td>
-		    			<td>{{m.assunto}}</td>
-		    			<td>{{m.data}}</td>
-		    			<td>
-		    				<button class="btn btn-info" [attr.data-value]="m._id" ><i class="fa fa-file-text-o" aria-hidden="true" > </i> Ler</button>
-		    				<button class="btn btn-danger" [attr.data-value]="m._id"><i class="fa fa-trash" aria-hidden="true"> </i> Apagar</button>
+		    	<tbody id="tbl-body">
+		    		<tr *ngFor="let m of msgs" >
+		    			<td [class.teste]="m.status">{{m.origem}}</td>
+		    			<td [class.teste]="m.status">{{m.assunto}}</td>
+		    			<td [class.teste]="m.status">{{m.data}}</td>
+		    			<td [class.teste]="m.status">
+		    				<button class="btn btn-info" [attr.data-value]="m._id" (click)="ler(m._id)" ><i class="fa fa-file-text-o" aria-hidden="true" > </i> Ler</button>
+		    				<button [attr.data-value]="m._id" class="btn btn-danger apagar-msg" (click)="remover(m._id)" ><i class="fa fa-trash" aria-hidden="true"> </i> Apagar</button>
 		    			</td>
 		    		</tr>
 		    	</tbody>
@@ -28,5 +29,5 @@
 		</div>
 	</div>
 </div>
-
+<app-modal-lrm></app-modal-lrm>
 <app-rodape></app-rodape>

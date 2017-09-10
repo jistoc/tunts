@@ -22,7 +22,7 @@ export class PaginaAnuncianteComponent implements OnInit {
   @ViewChild(ModalMensagemComponent) modalMensagem: ModalComponent;
 
   open() {
-      var aux = this.anunciante+"#"+this.usuario;
+      var aux = this.usuario+"#"+this.anunciante;
       this.modalMensagem.open(aux);
   }
   constructor(private router: Router, private route: ActivatedRoute,private autenticacao:AutenticacaoService) { }

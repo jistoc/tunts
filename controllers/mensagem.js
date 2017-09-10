@@ -3,7 +3,6 @@ const Usuario = require('../models/usuario');
 module.exports = {
   getEnviadas : (req,res,next) => {
 
-
     Mensagem.find({origem : req.params.usuario }, (err,mensagens) =>{
     	if(err) res.json("mensagem:falha");
     	res.json(mensagens);
@@ -14,7 +13,7 @@ module.exports = {
   getRecebidas : (req,res,next) => {
 
 
-    Mensagem.find({destino : req.params.usuario},  (err,mensagens) =>{
+    Mensagem.find({destino : req.params.usuario}).sort({data:-1,status:-1}).exec( (err,mensagens) =>{
     	if(err) res.json("mensagem:falha");
     	res.json(mensagens);
     });
@@ -23,11 +22,12 @@ module.exports = {
   },
   setMensagem : (req,res,next) => {
     let mensagem = new Mensagem(req.body);
+    console.log(mensagem);
     mensagem.save(function(err,mesg){
     	if(!err){
-    		res.json("mensagem:sucesso");
+    		res.json({mensagem:"enviada"});
     	} else {
-    		res.json("mensagem:falha");
+    		res.json({mensagem:"falha"});
     	}
     })
   },
@@ -48,6 +48,15 @@ module.exports = {
 	      res.json(count);
 	    });
   	}
+  },
+  unsetMensagem : (req,res,next) => { 
+
+    Mensagem.remove({_id : req.params.id},  (err) =>{
+      if(err) res.json({mensagem:"falha"});
+      res.json({mensagem:"removido"});
+    });
+    
+
   }
 
 }
