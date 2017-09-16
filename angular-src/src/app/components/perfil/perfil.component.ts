@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacaoService } from '../../services/autenticacao.service';
+import { MensagemCounterService } from '../../services/mensagem-counter.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,9 +16,10 @@ export class PerfilComponent implements OnInit {
   confirmarSenha: String;
   uf: String;
   cidade: String;
-  novasMsg : String;
 
-  constructor(private autenticacao:AutenticacaoService,private router:Router) {
+  constructor(private autenticacao:AutenticacaoService,
+              private router:Router, 
+              private msgCounter:MensagemCounterService) {
 
   }
 
@@ -28,9 +30,7 @@ export class PerfilComponent implements OnInit {
         this.nome = perfil.user.nome;
         this.uf = perfil.user.uf;
         this.cidade = perfil.user.cidade;
-        this.autenticacao.getNovasMensagens(perfil.user.login).subscribe(total => {
-          this.novasMsg = total;
-        })
+        this.msgCounter.getCounter();
       },
       err => {
         console.log(err);

@@ -1,0 +1,41 @@
+<br><br>
+<div class="container">
+	<div class="row">
+		<app-perfil></app-perfil>
+		<div class="col-md-9">
+			<legend>Minha Listagem</legend>
+			<flash-messages></flash-messages>
+			
+			<button class="btn btn-default" (click)="open()"><i class="fa fa-plus-square"> </i> Novo Produto</button>
+			
+		    <table class="table condensed">
+		    	<thead>
+		    		<tr>
+			    		<th>Título</th>
+			    		<th>Tipo</th>
+			    		<th>Categoria</th>
+			    		<th>Unidade</th>
+			    		<th>Valor</th>
+			    		<th>Opções</th>
+			    	</tr>
+		    	</thead>
+		    	<tbody id="tbl-body">
+		    		<tr *ngFor="let i of itens.itens">
+		    			<td>{{i.titulo}}</td>
+		    			<td>{{i.tipo_s}}</td>
+		    			<td>{{i.categoria}}</td>
+		    			<td>{{i.unidade_s}}</td>
+		    			<td>{{i.valor_s}}</td>
+		    			<td>
+		    				<button class="btn btn-info" (click)="alterar(i._id)" ><i class="fa fa-file-text-o" aria-hidden="true"  > </i> Alterar</button>
+		    				<button class="btn btn-danger apagar-msg" (click)="remover(i._id)" ><i class="fa fa-trash" aria-hidden="true" > </i> Apagar</button>
+		    			</td>
+		    		</tr>
+		    	</tbody>
+		    </table>
+		</div>
+	</div>
+</div>
+<app-modal-item></app-modal-item>
+<app-modal-altitem></app-modal-altitem>
+<app-rodape></app-rodape>

@@ -10,7 +10,7 @@
             <input [(ngModel)]="origem"  type="hidden" 
             id="origem" name="origem"/>
 
-            <input [(ngModel)]="destino"  ng-disabled="this.destino.length>2" type="text" class="form-control"
+            <input [(ngModel)]="destino" type="text" class="form-control"
             id="destino" placeholder="Destino" name="destino"/>
         </div>
         <div class="form-group">
@@ -26,7 +26,7 @@
       </form>
     </modal-body>
     <modal-footer [show-default-buttons]="false">
-      <button class="btn btn-primary" type="reset">Limpar campos</button>
+      <button class="btn btn-primary" (clicl)="reset()">Limpar campos</button>
       <button class="btn btn-success" (click)="enviarMensagem()">Enviar</button>
     </modal-footer>
 </modal>

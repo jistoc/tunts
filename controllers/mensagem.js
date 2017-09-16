@@ -23,13 +23,20 @@ module.exports = {
   setMensagem : (req,res,next) => {
     let mensagem = new Mensagem(req.body);
     console.log(mensagem);
-    mensagem.save(function(err,mesg){
-    	if(!err){
-    		res.json({mensagem:"enviada"});
-    	} else {
-    		res.json({mensagem:"falha"});
-    	}
-    })
+    Usuario.count({login:mensagem.destino}, function(err,count){
+      if(count==1){
+        mensagem.save(function(err,mesg){
+          if(!err){
+            res.json({mensagem:"enviada"});
+          } else {
+            res.json({mensagem:"falha"});
+          }
+        });
+      } else {
+        res.json({mensagem:"falha"});
+      }
+    });
+   
   },
   getCount : (req,res,next) => {
   	switch(req.params.op){
@@ -56,6 +63,12 @@ module.exports = {
       res.json({mensagem:"removido"});
     });
     
+  },
+  updateMensagem : (req,res,next) => {
+    Mensagem.update({_id : req.params.id},{$set : {status : false}},  (err,count) =>{
+      if(err) res.json({mensagem:"falha"});
+      res.json({mensagem:"atualizado"});
+    });
 
   }
 

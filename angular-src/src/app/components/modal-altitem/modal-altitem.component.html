@@ -1,0 +1,69 @@
+<modal #modalaltitem >
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Item</h4>
+    </modal-header>
+    <modal-body>
+      <form role="form">
+      <flash-messages></flash-messages>
+        <div class="form-group">
+          <label for="assunto">Título</label>
+            <input [(ngModel)]="titulo" type="text" class="form-control"
+            id="titulo" placeholder="Título" name="titulo"/>
+        </div>
+        <div class="form-group">
+          <label for="assunto">Descrição</label>
+            <textarea [(ngModel)]="descricao"  rows="3" class="form-control"
+            id="descricao" placeholder="Descrição do item" name="descricao"> </textarea>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="tipo">Tipo</label>
+          <select [(ngModel)]="tipo" id="tipo" name="tipo" ngControl="tipo" required class="form-control input-md">
+            <option value="p">Produto</option>
+            <option value="s">Serviço</option>
+          </select>
+        </div>
+        <div class="form-group">
+           <label class="control-label" for="categoria">Categoria</label>
+			<select [(ngModel)]="categoria" id="categoria" name="categoria" ngControl="categoria"  required class="form-control input-md">
+				<option value="banda">Banda</option>
+				<option value="bebida">Bebidas</option>
+				<option value="comida">Comida</option>
+				<option value="entretenimento">Entretenimento</option>
+				<option value="limpeza">Limpeza</option>
+				<option value="locacao">Locação</option>
+				<option value="entretenimento">Segurança</option>
+				<option value="outro">Outro</option>
+			</select>
+        </div>
+        <div class="form-group">
+           <label class="control-label" for="unidade">Unidade</label>
+			<select [(ngModel)]="unidade" id="unidade" name="unidade" ngControl="unidade"  required class="form-control input-md">
+				<option value="u">Unitário</option>
+				<option value="t">Dezena</option>
+				<option value="d">Duzia</option>
+				<option value="c">Centena</option>
+				<option value="k">Kilo</option>
+				<option value="l">Litro</option>
+				<option value="h">Hora</option>
+				<option value="d">Dia</option>
+				<option value="n">Não se Aplica</option>
+			</select>
+        </div>
+        <div class="form-group">
+          <label for="valor">Valor</label>
+            <input [(ngModel)]="valor"  type="text" class="form-control"
+            id="valor" placeholder="Valor por unidade" name="valor"/>
+        </div>
+        <div class="form-group">
+          <label for="assunto">Imagem</label>
+            <input [(ngModel)]="imagem"  type="text" class="form-control"
+            id="imagem" placeholder="Endereço da imagem" name="imagem"/>
+        </div>
+        <input [(ngModel)]="_id" type="hidden" class="form-control"
+            id="_id" name="_id"/>
+      </form>
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+      <button class="btn btn-success" (click)="alterar()">Salvar</button>
+    </modal-footer>
+</modal>

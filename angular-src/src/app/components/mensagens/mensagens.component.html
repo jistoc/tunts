@@ -5,6 +5,9 @@
 		<div class="col-md-9">
 			<legend>Mensagens</legend>
 			<flash-messages></flash-messages>
+			
+			<button class="btn btn-default" (click)="open()"><i class="fa fa-plus-square"> </i> Nova Mensagem</button>
+			
 		    <table class="table condensed">
 		    	<thead>
 		    		<tr>
@@ -15,7 +18,7 @@
 			    	</tr>
 		    	</thead>
 		    	<tbody id="tbl-body">
-		    		<tr *ngFor="let m of msgs" >
+		    		<tr *ngFor="let m of msgCounter.msgs" >
 		    			<td [class.teste]="m.status">{{m.origem}}</td>
 		    			<td [class.teste]="m.status">{{m.assunto}}</td>
 		    			<td [class.teste]="m.status">{{m.data}}</td>
@@ -30,4 +33,5 @@
 	</div>
 </div>
 <app-modal-lrm></app-modal-lrm>
+<app-modal-mensagem></app-modal-mensagem>
 <app-rodape></app-rodape>

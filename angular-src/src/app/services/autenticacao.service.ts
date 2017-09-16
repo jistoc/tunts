@@ -97,12 +97,36 @@ export class AutenticacaoService {
     return this.http.post('http://localhost:3000/mensagem/',mensagem,{headers: headers})
       .map(res => res.json());
   }
+  setItem(item){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:3000/item/',item,{headers: headers})
+      .map(res => res.json());
+  }
   removerMensagem(id){
     let headers = new Headers();
     this.carregarToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type','application/json');
     return this.http.delete('http://localhost:3000/mensagem/'+id,{headers: headers})
+      .map(res => res.json());
+  }
+  removerItem(id){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.delete('http://localhost:3000/item/'+id,{headers: headers})
+      .map(res => res.json());
+  }
+  lerMensagem(id){
+    let headers = new Headers();
+    this.carregarToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.put('http://localhost:3000/mensagem/'+id,{headers: headers})
       .map(res => res.json());
   }
   getAnunciante(anunciante){
@@ -117,6 +141,29 @@ export class AutenticacaoService {
       this.authToken = token;
       this.usuario = usuario;
   }
+
+  getItensAnunciante(usuario){
+      let headers = new Headers();
+      this.carregarToken();
+      headers.append('Authorization', this.authToken);
+      headers.append('Content-Type','application/json');
+      let end = 'http://localhost:3000/item/busca/4/'+usuario;
+      console.log(end);
+      return this.http.get(end,{headers: headers})
+        .map(res => res.json());
+  }
+  
+  updateItem(item){
+    let headers = new Headers();
+      console.log(item._id);
+      this.carregarToken();
+      headers.append('Authorization', this.authToken);
+      headers.append('Content-Type','application/json');
+      let end = 'http://localhost:3000/item/'+item._id;
+      return this.http.post(end,item,{headers: headers})
+        .map(res => res.json());
+  }
+
 
   carregarToken(){
     const token = localStorage.getItem('id_token');

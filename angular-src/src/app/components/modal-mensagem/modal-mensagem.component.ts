@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Ng2Bs3ModalModule, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AutenticacaoService } from '../../services/autenticacao.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-
+import { MensagemCounterService } from '../../services/mensagem-counter.service';
 
 @Component({
   selector: 'app-modal-mensagem',
@@ -26,6 +26,12 @@ export class ModalMensagemComponent implements OnInit {
         this.origem = aux[0];
     }
 
+    reset(){
+      this.destino = "";
+      this.assunto = "";
+      this.mensagem = "";
+    }
+
     enviarMensagem(){
       let mensagem = {
         destino : this.destino,
@@ -41,14 +47,18 @@ export class ModalMensagemComponent implements OnInit {
           this.assunto = "";
           this.mensagem = "";
           this.flashMessage.show("Mensagem enviada com sucesso!", {cssClass: 'alert-success', timeout: 5000});
-
+          this.msgCounter.listarMensagens();
+          this.msgCounter.getCounter();
         } else {
           this.flashMessage.show("Falha ao enviar mensagem!", {cssClass: 'alert-danger', timeout: 5000});
 
         }
       });
+      
     }
-  constructor(private flashMessage: FlashMessagesService, private autenticacao: AutenticacaoService ) { }
+  constructor(private flashMessage : FlashMessagesService, 
+              private autenticacao : AutenticacaoService,
+              private msgCounter : MensagemCounterService ) { }
 
   ngOnInit() {
 

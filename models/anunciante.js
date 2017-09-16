@@ -38,23 +38,23 @@ module.exports.adicionarPagina = function(novaPagina, callback){
 }
 module.exports.alterarPagina = function(paginaAlterada,callback){
 	Anunciante.anunciantePorNome(paginaAlterada.fornecedor, (err,anunciante) =>{
-    if(anunciante){
-      if(paginaAlterada.telefone!=undefined){
-        anunciante.telefone = paginaAlterada.telefone;
-      }
-      if(paginaAlterada.telefone!=undefined){
-        anunciante.descricao = paginaAlterada.descricao;
-      }
-      if(paginaAlterada.telefone!=undefined){
-        anunciante.imagem = paginaAlterada.imagem;
-      }
-      if(paginaAlterada.telefone!=undefined){
-        anunciante.titulo = paginaAlterada.titulo;
-      }
-      anunciante.save(callback);
-    } else {
-      callback(true,"Anunciante não encontrado!");
-    }
+	    if(anunciante){
+	      if(paginaAlterada.telefone!=undefined){
+	        anunciante.telefone = paginaAlterada.telefone;
+	      }
+	      if(paginaAlterada.telefone!=undefined){
+	        anunciante.descricao = paginaAlterada.descricao;
+	      }
+	      if(paginaAlterada.telefone!=undefined){
+	        anunciante.imagem = paginaAlterada.imagem;
+	      }
+	      if(paginaAlterada.telefone!=undefined){
+	        anunciante.titulo = paginaAlterada.titulo;
+	      }
+	      anunciante.save(callback);
+	    } else {
+	      callback(true,"Anunciante não encontrado!");
+	    }
 
 	})
 }

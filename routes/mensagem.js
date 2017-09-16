@@ -11,6 +11,7 @@ router.route('/')
 
 
 router.route('/:id')
+	  .put(MensagemController.updateMensagem)
 	  .delete(passport.authenticate('jwt', {session:false}),MensagemController.unsetMensagem);
 
 router.route('/:usuario/enviadas')

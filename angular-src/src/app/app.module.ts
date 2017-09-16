@@ -23,14 +23,20 @@ import { AuthGuard } from './guards/auth.guard';
 
 
 import { ValidarUsuarioService } from './services/validar-usuario.service';
+import { MensagemCounterService } from './services/mensagem-counter.service';
 import { AutenticacaoService } from './services/autenticacao.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AcessoItemService } from './services/acesso-item.service';
+
 import { TextMaskModule } from 'angular2-text-mask';
 import { EditarPaginaComponent } from './components/editar-pagina/editar-pagina.component';
 import { PaginaAnuncianteComponent } from './components/pagina-anunciante/pagina-anunciante.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { MensagensComponent } from './components/mensagens/mensagens.component';
 import { ModalLrmComponent } from './components/modal-lrm/modal-lrm.component';
+import { ControleItemComponent } from './components/controle-item/controle-item.component';
+import { ModalItemComponent } from './components/modal-item/modal-item.component';
+import { ModalAltitemComponent } from './components/modal-altitem/modal-altitem.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
@@ -44,7 +50,8 @@ const appRoutes: Routes = [
   {path:'editar-pagina',component:EditarPaginaComponent, canActivate:[AuthGuard]},
   {path:'a/:anunciante',component:PaginaAnuncianteComponent},
   {path:'home',component:PrincipalComponent},
-  {path:'u/mensagens',component:MensagensComponent}
+  {path:'u/mensagens',component:MensagensComponent},
+  {path:'u/controle-item',component:ControleItemComponent, canActivate:[AuthGuard]}
 ];
 @NgModule({
   declarations: [
@@ -64,7 +71,10 @@ const appRoutes: Routes = [
     ModalMensagemComponent,
     PrincipalComponent,
     MensagensComponent,
-    ModalLrmComponent
+    ModalLrmComponent,
+    ControleItemComponent,
+    ModalItemComponent,
+    ModalAltitemComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +88,7 @@ const appRoutes: Routes = [
     NgxQRCodeModule,
     Ng2Bs3ModalModule
   ],
-  providers: [ValidarUsuarioService, AutenticacaoService, AuthGuard],
+  providers: [ValidarUsuarioService, AutenticacaoService, MensagemCounterService, AcessoItemService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

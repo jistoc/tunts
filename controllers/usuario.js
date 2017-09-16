@@ -148,7 +148,7 @@ module.exports = {
   		Usuario.compararSenha(senha, usuario.senha, (err,isMatch) => {
   			if(err) throw err;
   			if(isMatch){
-  				const token = jwt.sign(usuario,config.secret,{
+  				const token = jwt.sign({data:usuario},config.secret,{
   					expiresIn : 36000
   				});
 

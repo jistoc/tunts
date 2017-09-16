@@ -7,9 +7,10 @@
       <a [routerLink]="['/home']" class="list-group-item">
         <i class="fa fa-search" aria-hidden="true"> </i> Pesquisar itens
       </a>
-      <a [routerLink]="['/u/mensagens']" class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"> </i> Mensagens<span class="badge">{{novasMsg}}</span></a>
+      <a [routerLink]="['/u/mensagens']" class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"> </i> Mensagens<span class="badge">{{msgCounter.counter}}</span></a>
       <a href="#" class="list-group-item"><i class="fa fa-shopping-bag" aria-hidden="true"> </i> Meus eventos<span class="badge">0</span></a>
       <a *ngIf="usuario.cnpj!=usuario.login"  [routerLink]="['/editar-pagina']" class="list-group-item"><i class="fa fa-bullhorn" aria-hidden="true"> </i> Página de anúncio</a>
+      <a *ngIf="usuario.cnpj!=usuario.login"  [routerLink]="['/u/controle-item']" class="list-group-item"><i class="fa fa-tags" aria-hidden="true"></i>  Listagem</a>
       <a [routerLink]="['/alterar-info']" class="list-group-item"><i class="fa fa-address-card" aria-hidden="true"> </i> Dados cadastrais</a>
     </div>
   </div>

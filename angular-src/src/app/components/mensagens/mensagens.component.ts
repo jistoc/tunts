@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao.service';
-import { PerfilComponent } from '../perfil/perfil.component';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ModalLrmComponent } from '../modal-lrm/modal-lrm.component';
+import { ModalMensagemComponent } from '../modal-mensagem/modal-mensagem.component';
 import { Ng2Bs3ModalModule, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { MensagemCounterService } from '../../services/mensagem-counter.service';
 declare var jQuery:any;
 declare var $:any;
 
@@ -14,54 +15,37 @@ declare var $:any;
   styleUrls: ['./mensagens.component.css']
 })
 export class MensagensComponent implements OnInit {
-	msgs : Array<{assunto : String,
-					 data : string,
-				  destino : String,
-				 mensagem : String,
-				 origem   : String,
-				   status : Boolean,
-					  __v : Number,  
-					  _id : String}>;
-
-
-
+	
 
   @ViewChild(ModalLrmComponent) modalMensagem: ModalComponent;
-
   ler(id) {
-      for(let i = 0; i<this.msgs.length;i++){
-        if(this.msgs[i]._id==id){
-          this.modalMensagem.open(this.msgs[i].origem+"#"+this.msgs[i].assunto+"#"+this.msgs[i].mensagem);
+      for(let i = 0; i<this.msgCounter.msgs.length;i++){
+        if(this.msgCounter.msgs[i]._id==id){
+          this.modalMensagem.open(this.msgCounter.msgs[i].origem+"#"+this.msgCounter.msgs[i].assunto+"#"+this.msgCounter.msgs[i].mensagem+"#"+this.msgCounter.msgs[i]._id);
           continue;
         }
       }
   }
 
+  @ViewChild(ModalMensagemComponent) modalMensagemN: ModalComponent;
+  open() {
+      this.modalMensagemN.open();
+  }
+
+
   constructor(private autenticacao:AutenticacaoService,
               private router:Router,
-              private flashMessage: FlashMessagesService) { }
+              private flashMessage: FlashMessagesService,
+              private msgCounter:MensagemCounterService) { }
 
   ngOnInit() {
   	
-    this.listarMensagens();
+    this.msgCounter.listarMensagens();
 
   }
 
-  listarMensagens(){
-    let u = JSON.parse(localStorage.getItem('usuario'));
-    this.autenticacao.getMensagensRecebidas(u.login).subscribe(total => {
-        this.msgs = total;
-        for(let i=0;i<this.msgs.length;i++){
-          let aux = new Date(this.msgs[i].data);
-          this.msgs[i].data = this.msgs[i].data.substring(8,10)+
-                              "/"+this.msgs[i].data.substring(5,7)+
-                              "/"+this.msgs[i].data.substring(0,4)+
-                              " "+this.msgs[i].data.substring(11,13)+
-                              ":"+this.msgs[i].data.substring(14,16);
-
-
-        }
-    });
+  ngAfterViewInit(): void {
+   
   }
 
   remover(id){
@@ -69,13 +53,12 @@ export class MensagensComponent implements OnInit {
       if(total.mensagem == 'removido'){
         this.flashMessage.show("Mensagem apagada com sucesso!", {cssClass: 'alert-success', timeout: 5000});
         $("#tbodyid").empty();
+        this.msgCounter.getCounter();
         this.ngOnInit();
       } else {
         this.flashMessage.show("Falha ao apagar mensagem!", {cssClass: 'alert-danger', timeout: 5000});
-
       }
     });
-
   }
 
 }
