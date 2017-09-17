@@ -57,11 +57,7 @@ export class ModalLrmComponent implements OnInit {
 
   fechar(){
     this.autenticacao.lerMensagem($('#_id').val()).subscribe(msg => {
-      if(msg.mensagem=="atualizado") {   
-        this.msgCounter.getCounter();
-        this.msgCounter.listarMensagens();
-
-      }
+      
       this.modal.close();
     });
   }

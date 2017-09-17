@@ -20,7 +20,7 @@ import { AtivarComponent } from './components/ativar/ativar.component';
 import { AlterarInfoComponent } from './components/alterar-info/alterar-info.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { AuthGuard } from './guards/auth.guard';
-
+import { DataTablesModule } from 'angular-datatables';
 
 import { ValidarUsuarioService } from './services/validar-usuario.service';
 import { MensagemCounterService } from './services/mensagem-counter.service';
@@ -37,6 +37,7 @@ import { ModalLrmComponent } from './components/modal-lrm/modal-lrm.component';
 import { ControleItemComponent } from './components/controle-item/controle-item.component';
 import { ModalItemComponent } from './components/modal-item/modal-item.component';
 import { ModalAltitemComponent } from './components/modal-altitem/modal-altitem.component';
+import { BuscaItemComponent } from './components/busca-item/busca-item.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
   {path:'a/:anunciante',component:PaginaAnuncianteComponent},
   {path:'home',component:PrincipalComponent},
   {path:'u/mensagens',component:MensagensComponent},
-  {path:'u/controle-item',component:ControleItemComponent, canActivate:[AuthGuard]}
+  {path:'u/controle-item',component:ControleItemComponent, canActivate:[AuthGuard]},
+  {path:'busca-item',component:BuscaItemComponent, canActivate:[AuthGuard]}
 ];
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ const appRoutes: Routes = [
     ModalLrmComponent,
     ControleItemComponent,
     ModalItemComponent,
-    ModalAltitemComponent
+    ModalAltitemComponent,
+    BuscaItemComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ const appRoutes: Routes = [
     MyDatePickerModule,
     TextMaskModule,
     NgxQRCodeModule,
-    Ng2Bs3ModalModule
+    Ng2Bs3ModalModule,
+    DataTablesModule
   ],
   providers: [ValidarUsuarioService, AutenticacaoService, MensagemCounterService, AcessoItemService, AuthGuard],
   bootstrap: [AppComponent]

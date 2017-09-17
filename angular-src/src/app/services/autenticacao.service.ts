@@ -152,6 +152,16 @@ export class AutenticacaoService {
       return this.http.get(end,{headers: headers})
         .map(res => res.json());
   }
+  getItens(){
+      let headers = new Headers();
+      this.carregarToken();
+      headers.append('Authorization', this.authToken);
+      headers.append('Content-Type','application/json');
+      let end = 'http://localhost:3000/item/busca/6/a';
+      console.log(end);
+      return this.http.get(end,{headers: headers})
+        .map(res => res.json());
+  }
   
   updateItem(item){
     let headers = new Headers();

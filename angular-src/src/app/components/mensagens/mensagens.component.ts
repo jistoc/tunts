@@ -5,9 +5,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ModalLrmComponent } from '../modal-lrm/modal-lrm.component';
 import { ModalMensagemComponent } from '../modal-mensagem/modal-mensagem.component';
 import { Ng2Bs3ModalModule, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
-import { MensagemCounterService } from '../../services/mensagem-counter.service';
-declare var jQuery:any;
-declare var $:any;
+import { MensagemCounterService } from '../../services/mensagem-counter.service';    
 
 @Component({
   selector: 'app-mensagens',
@@ -15,8 +13,9 @@ declare var $:any;
   styleUrls: ['./mensagens.component.css']
 })
 export class MensagensComponent implements OnInit {
-	
-
+	 
+  dtOptions: DataTables.Settings = {};
+  
   @ViewChild(ModalLrmComponent) modalMensagem: ModalComponent;
   ler(id) {
       for(let i = 0; i<this.msgCounter.msgs.length;i++){
@@ -29,8 +28,9 @@ export class MensagensComponent implements OnInit {
 
   @ViewChild(ModalMensagemComponent) modalMensagemN: ModalComponent;
   open() {
-      this.modalMensagemN.open();
+      this.modalMensagemN.open(JSON.parse(localStorage.getItem('usuario')).login + "#");
   }
+
 
 
   constructor(private autenticacao:AutenticacaoService,
@@ -41,6 +41,31 @@ export class MensagensComponent implements OnInit {
   ngOnInit() {
   	
     this.msgCounter.listarMensagens();
+    this.dtOptions = {
+      language : {
+        emptyTable :  "Nenhum registro encontrado",
+        info : "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        infoEmpty :  "Mostrando 0 até 0 de 0 registros",
+        infoFiltered :  "(Filtrados de _MAX_ registros)",
+        infoPostFix : "",
+        thousands : ".",
+        lengthMenu : "_MENU_ resultados por página",
+        loadingRecords : "Carregando...",
+        processing : "Processando...",
+        zeroRecords : "Nenhum registro encontrado",
+        search : "Pesquisar",
+        paginate: {
+        next: "Próximo",
+        previous: "Anterior",
+        first: "Primeiro",
+        last: "Último"
+        },
+        aria : {
+            sortAscending: ": Ordenar colunas de forma ascendente",
+            sortDescending: ": Ordenar colunas de forma descendente"
+        }
+      }
+    };
 
   }
 
