@@ -29,6 +29,7 @@ const mail = require('./routes/mail');
 const anunciante = require('./routes/anunciante');
 const mensagem = require('./routes/mensagem');
 const item = require('./routes/item');
+const evento = require('./routes/evento');
 //definindo porta
 const port = process.env.PORT || 3000;
 
@@ -52,6 +53,7 @@ app.use('/mail', mail);
 app.use('/anunciante', anunciante);
 app.use('/mensagem', mensagem);
 app.use('/item', item);
+app.use('/evento', evento);
 // logger
 app.use(morgan('dev'));
 
