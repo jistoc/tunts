@@ -21,7 +21,7 @@
     "crypto": "0.0.3",
     "express": "*",
     "jsonwebtoken": "*",
-    "mongoose": "^4.10.8",
+    "mongoose": "4.10.8",
     "morgan": "^1.8.2",
     "nodemailer": "^4.0.1",
     "passport": "*",
