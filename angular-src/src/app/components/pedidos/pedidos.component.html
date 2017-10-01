@@ -1,0 +1,116 @@
+
+<div class="container">
+	<br><br>
+	<div class="row">
+
+	  <app-perfil></app-perfil>
+	  <div class="col-md-9">
+	    <flash-messages>
+	    </flash-messages>
+	    <legend>Pedidos</legend>
+	   	<h2>Pendentes</h2>
+
+
+	   	<table class="table table-condensed table-bordered">
+	   		<thead>
+	   			<tr>
+	   				<th>Usuario</th>
+	   				<th>Evento</th>
+	   				<th>Data</th>
+	   				<th>Item</th>
+	   				<th>Quantidade</th>
+	   				<th>Opções</th>
+	   			</tr>
+	   		</thead>
+	   		<tbody>
+	   			<ng-container *ngFor="let i of pendentes" >
+	   				<tr *ngFor="let p of i.itens" >
+
+		    			<td >{{i.usuario}}</td>
+		    			<td >{{i.titulo}}</td>
+		    			<td >{{i.data}}</td>
+		    			<td >{{p.titulo}}</td>
+		    			<td >{{p.quantidade}}</td>
+		    			<td>
+		    				<button class="btn btn-success" ><i class="fa fa-check" aria-hidden="true" (click)="alterarStatus(i._id,p.item,2)"></i></button>
+		    				<button class="btn btn-danger" (click)="alterarStatus(i._id,p.item,3)"><i class="fa fa-times"></i></button>
+    						<button class="btn btn-default" (click)="open(i.usuario)"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+
+    						 
+		    			</td>
+	    			</tr>
+	    			
+	    		</ng-container>
+	   		</tbody>
+	   	</table>
+
+	   	<h2>Confirmados</h2>
+	   		<table class="table table-condensed table-bordered">
+		   		<thead>
+		   			<tr>
+		   				<th>Usuario</th>
+		   				<th>Evento</th>
+		   				<th>Data</th>
+		   				<th>Item</th>
+		   				<th>Quantidade</th>
+		   				<th>Opções</th>
+		   			</tr>
+		   		</thead>
+		   		<tbody>
+		   			<ng-container *ngFor="let i of confirmados" >
+		   				<tr *ngFor="let p of i.itens" >
+
+			    			<td >{{i.usuario}}</td>
+			    			<td >{{i.titulo}}</td>
+			    			<td >{{i.data}}</td>
+			    			<td >{{p.titulo}}</td>
+			    			<td >{{p.quantidade}}</td>
+			    			<td>
+			    				<button class="btn btn-danger" (click)="alterarStatus(i._id,p.item,3)"><i class="fa fa-times"></i></button>
+	    						<button class="btn btn-default" (click)="open(i.usuario)"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+
+	    						 
+			    			</td>
+		    			</tr>
+		    			
+		    		</ng-container>
+		   		</tbody>
+		   	</table>
+	   	<h2>Rejeitados</h2>
+	   		<table class="table table-condensed table-bordered">
+		   		<thead>
+		   			<tr>
+		   				<th>Usuario</th>
+		   				<th>Evento</th>
+		   				<th>Data</th>
+		   				<th>Item</th>
+		   				<th>Quantidade</th>
+		   				<th>Opções</th>
+		   			</tr>
+		   		</thead>
+		   		<tbody>
+		   			<ng-container *ngFor="let i of rejeitados" >
+		   				<tr *ngFor="let p of i.itens" >
+
+			    			<td >{{i.usuario}}</td>
+			    			<td >{{i.titulo}}</td>
+			    			<td >{{i.data}}</td>
+			    			<td >{{p.titulo}}</td>
+			    			<td >{{p.quantidade}}</td>
+			    			<td>
+			    				<button class="btn btn-success" ><i class="fa fa-check" aria-hidden="true" (click)="alterarStatus(i._id,p.item,2)"></i></button>
+	    						<button class="btn btn-default" (click)="open(i.usuario)"><i class="fa fa-envelope" aria-hidden="true" ></i></button>
+
+	    						 
+			    			</td>
+		    			</tr>
+		    			
+		    		</ng-container>
+		   		</tbody>
+		   	</table>
+	  </div>
+	
+	</div>
+</div>
+<app-modal-mensagem></app-modal-mensagem>
+<app-rodape></app-rodape>

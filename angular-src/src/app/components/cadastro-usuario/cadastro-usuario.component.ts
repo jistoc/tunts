@@ -5,7 +5,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
-import {IMyOptions} from 'mydatepicker';
+import { IMyOptions } from 'mydatepicker';
 
 @Component({
   selector: 'app-cadastro-usuario',

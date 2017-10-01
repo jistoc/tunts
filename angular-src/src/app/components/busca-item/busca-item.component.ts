@@ -3,7 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AcessoItemService } from '../../services/acesso-item.service';
-
+import { Ng2Bs3ModalModule, ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { ModalItemEventoComponent } from '../modal-item-evento/modal-item-evento.component';
 @Component({
   	selector: 'app-busca-item',
   	templateUrl: './busca-item.component.html',
@@ -18,6 +19,11 @@ export class BuscaItemComponent implements OnInit {
               private flashMessage: FlashMessagesService,
               private itens:AcessoItemService) { }
 		
+		
+	@ViewChild(ModalItemEventoComponent) modalItemEvento: ModalComponent;
+	abrir(id) {
+	  	this.modalItemEvento.open(id);
+	}
 	ngOnInit() {
 
       	this.itens.listarItensBusca();

@@ -19,7 +19,7 @@ export class ModalItemComponent implements OnInit {
   	valor : String;
     imagem : String;
   	_id : String;
-  	
+  	form : any;
 
   @ViewChild('modalitem')
     modal: ModalComponent;
@@ -45,15 +45,7 @@ export class ModalItemComponent implements OnInit {
 
     this.autenticacao.setItem(item).subscribe(data => {
       if(data.mensagem=="cadastrado"){
-        this.acesso_item.listarItens();
-        this.anunciante = "";
-        this.titulo = "";
-        this.descricao = "";
-        this.tipo = "";
-        this.categoria = "";
-        this.unidade = "";
-        this.valor = "";
-        this.imagem = "";
+        this.acesso_item.listarItens();  
         this.flashMessage.show("Item cadastrado com sucesso!", {cssClass: 'alert-success', timeout: 5000});
       } else {
         this.flashMessage.show("Falha ao cadastrar item!", {cssClass: 'alert-danger', timeout: 5000});

@@ -25,6 +25,7 @@ export class ModalMensagemComponent implements OnInit {
         this.destino = aux[1];
         this.origem = aux[0];
     }
+    
 
     reset(){
       this.destino = "";
@@ -54,7 +55,7 @@ export class ModalMensagemComponent implements OnInit {
 
         }
       });
-      
+      this.modal.close();
     }
   constructor(private flashMessage : FlashMessagesService, 
               private autenticacao : AutenticacaoService,

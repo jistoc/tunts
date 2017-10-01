@@ -6,7 +6,7 @@ const EsquemEvento = mongoose.Schema({
 		type : String,
 		required : true
 	},
-	nome : {
+	titulo : {
 		type : String,
 		required : true
 	},
@@ -14,9 +14,9 @@ const EsquemEvento = mongoose.Schema({
 		type : Date,
 		required : true
 	},
-  	itens : [{
-  		type : Object
-  	}],
+  	itens : {
+  		type : Array
+  	},
   	status : {
   		type : Boolean,
   		default : true

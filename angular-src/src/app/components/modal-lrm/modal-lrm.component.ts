@@ -20,12 +20,13 @@ export class ModalLrmComponent implements OnInit {
   mensagem : String;
   resposta : String;
   _id : String;
+  modal_g : any;
 
   @ViewChild('modal2')
-    modal: ModalComponent;
+    modal_r: ModalComponent;
     open(dados){
         var aux = dados.split("#");
-        this.modal.open();
+        this.modal_r.open();
         this.origem = aux[0];
         this.assunto = aux[1];
         this.mensagem= aux[2];
@@ -53,12 +54,13 @@ export class ModalLrmComponent implements OnInit {
 
         }
       });
+      this.modal_r.close();
   }
 
   fechar(){
     this.autenticacao.lerMensagem($('#_id').val()).subscribe(msg => {
       
-      this.modal.close();
+      this.modal_r.close();
     });
   }
 

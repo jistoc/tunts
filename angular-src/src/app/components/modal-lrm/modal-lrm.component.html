@@ -1,10 +1,9 @@
-<modal #modal2 (onDismiss)="fechar()" (onClose)="fechar()">
+<modal #modal2 (onDismiss)="fechar()" >
     <modal-header [show-close]="true">
         <h4 class="modal-title">Mensagem</h4>
     </modal-header>
     <modal-body>
       <form role="form">
-      <flash-messages></flash-messages>
         <div class="form-group">
           <label for="assunto">Origem</label>
             <input [(ngModel)]="origem"  readonly type="text" class="form-control"

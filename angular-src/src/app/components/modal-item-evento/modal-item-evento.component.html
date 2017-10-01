@@ -1,0 +1,128 @@
+<modal #modalitemevento >
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">Informações</h4>
+    </modal-header>
+    <modal-body>
+
+      <flash-messages></flash-messages>
+      <form>
+        <img style="display: block;margin: 0 auto" src={{imagem}} class="img img-responsive" /> 
+        
+       
+        <br><br>
+
+        <div class="row row-pad">
+          <div class="col-md-2 text-right" ><strong>Título</strong></div>
+          <div class="col-md-10 text-justify" style="padding-right: 20px;">{{titulo}}</div>
+        </div>
+        <div class="row row-pad">
+          <div class="col-md-2 text-right" ><strong>Descrição</strong></div>
+          <div class="col-md-10 text-justify" style="padding-right: 20px;">{{descricao}}</div>
+        </div>
+        <div class="row row-pad">
+          <div class="col-md-2 text-right" ><strong>Anunciante</strong></div>
+          <div class="col-md-4 text-justify" style="padding-right: 20px;">
+            <a [href]="'a/'+anunciante" target="_blank">{{anunciante}}</a>
+          
+          </div>
+          <div class="col-md-2 text-right" ><strong>Unidade</strong></div>
+          <div class="col-md-4 text-justify" style="padding-right: 20px;">{{unidade}}</div>
+        </div>
+        <div class="row row-pad">
+          <div class="col-md-2 text-right" ><strong>Valor</strong></div>
+          <div class="col-md-4 text-justify" style="padding-right: 20px;"><span>R$</span>{{valor}}</div>
+          <div class="col-md-2 text-right" ><strong>Quantidade</strong></div>
+          <div class="col-md-4 text-justify" style="padding-right: 20px;"><input (ngModelChange)="atualizar($event)" step="1" type="number" name="quantidade" [ngModel]="quantidade" min="1" class="form-control"></div>
+        </div>
+        <div class="row row-pad">
+          <div class="col-md-2 text-right" ><strong>Evento</strong></div>
+          <div class="col-md-10 text-justify" style="padding-right: 20px;">
+            <select  class="form-control" (ngModelChange)="atualizarEvento($event)" name="evento" [ngModel]="evento">
+              <option value="-1"><span class="text-muted">Selecione um evento</span></option>
+              <option *ngFor="let ev of eventos" [value]="ev._id">{{ev.titulo}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row row-pad">
+          <div class="col-md-2 text-right" ><strong>Observações</strong></div>
+          <div class="col-md-10 text-justify" style="padding-right: 20px;">
+            <textarea rows="4" class="form-control" name="obs" [ngModel]="obs"></textarea>  
+          </div>
+        </div>
+        <div class="row row-pad">
+          <div class="col-md-2 col-md-offset-6 text-right" ><strong>Total:</strong></div>
+          <div class="col-md-4 text-justify" style="padding-right: 20px;"><input type="text"  readonly name="total" class="form-control" [ngModel]="total"></div>
+        </div>
+      </form>
+      <!--
+      <form class="form-horizontal" role="form">
+        <fieldset>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label"  for="titulo">Título</label>
+            <div class="col-sm-10">
+              <input type="text" name="titulo" [ngModel]="titulo" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="descricao">Descrição</label>
+            <div class="col-sm-10">
+              <textarea  class="form-control" name="descricao" [ngModel]="descricao"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+
+            <label class="col-sm-2 control-label" for="anunciante">Anunciante</label>
+            <div class="col-sm-4">
+              <input type="text" name="anunciante" [ngModel]="anunciante" class="form-control">
+            </div>
+
+            <label class="col-sm-2 control-label" for="unidade">Unidade</label>
+            <div class="col-sm-4">
+              <input type="text" name="unidade" [ngModel]="unidade">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="valor">Valor</label>
+            <div class="col-sm-4">
+              <input type="text" name="valor" [ngModel]="valor"  class="form-control">
+            </div>
+
+            <label class="col-sm-2 control-label" for="textinput">Quantidade</label>
+            <div class="col-sm-4">
+              <input type="number" [ngModel]="quantidade" name="quantidade">
+            </div>
+          </div>
+
+          <div class="text-right" style="padding-right: 10px;">
+            <p><strong>Total</strong></p>
+            <hr>
+            <p><strong>34 </strong> x <strong> 3: </strong> <span>R$ </span>102</p>
+          </div>
+
+         
+
+        </fieldset>
+        <input [(ngModel)]="_id" type="hidden" class="form-control"
+            id="_id" name="_id"/>
+      </form>-->
+    </modal-body>
+    <modal-footer [show-default-buttons]="false">
+      <button class="btn btn-success" (click)="inserirItem()" >Adicionar</button>
+    </modal-footer>
+</modal>
+<!-- 
+<div class="form-group">
+          <label for="assunto">Descrição</label>
+            <textarea [(ngModel)]="descricao"  rows="3" class="form-control"
+            id="descricao"  name="descricao"> </textarea>
+        </div>
+
+        
+       
+        <input [(ngModel)]="_id" type="hidden" class="form-control"
+            id="_id" name="_id"/>
+  -->

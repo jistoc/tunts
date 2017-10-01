@@ -1,0 +1,51 @@
+
+<div class="container">
+	<br><br>
+	<div class="row">
+
+	  <app-perfil></app-perfil>
+	  <div class="col-md-9">
+	    <flash-messages>
+	    </flash-messages>
+	    <legend>Detalhes</legend>
+	    <h3>{{evento.titulo}}</h3>
+	    <h4>{{evento.data}}</h4>
+	    <br>
+	    <table class="table table-condensed table-bordered">
+	    	<thead>
+	    		<tr>
+	    			<th>Item</th>
+	    			<th>Anunciante</th>
+	    			<th>Quantidade</th>
+	    			<th>Valor</th>
+	    			<th>Total</th>
+	    			<th>Status</th>
+	    			<th>Opções</th>
+	    		</tr>
+	    	</thead>
+
+	    	<tr *ngFor="let i of evento.itens" >
+    			<td >{{i.titulo}}</td>
+    			<td ><a [href]="'a/'+i.anunciante" target="_blank">{{i.anunciante}}</a></td>
+    			<td >{{i.quantidade}}</td>
+    			<td >{{i.valor}}</td>
+    			<td >{{i.total}}</td>	
+    			<td class="text-center">
+    				<span *ngIf="i.status==0" class="btn btn-default" >Sem Status </span>
+    				<span *ngIf="i.status==1" class="btn btn-info" > Pendente </span>
+    				<span *ngIf="i.status==2" class="btn btn-success"  > Confirmado</span>
+    				<span *ngIf="i.status==3" class="btn btn-warning" > Rejeitado</span>
+    			</td>
+    			<td class="text-center">
+    				<button *ngIf="i.status==0" class="btn btn-success" (click)="alterarStatus(i.item,1)" ><i class="fa fa-check" aria-hidden="true"></i></button>
+    				<button class="btn btn-danger" (click)="remover(i.item)" ><i class="fa fa-times"></i></button>
+    				<button class="btn btn-default" (click)="open(i.anunciante)" ><i class="fa fa-envelope" aria-hidden="true"></i></button>
+    			</td>
+    		</tr>
+		</table>
+	  </div>
+	
+	</div>
+</div>
+<app-modal-mensagem></app-modal-mensagem>
+<app-rodape></app-rodape>

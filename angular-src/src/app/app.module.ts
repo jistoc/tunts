@@ -27,6 +27,7 @@ import { MensagemCounterService } from './services/mensagem-counter.service';
 import { AutenticacaoService } from './services/autenticacao.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AcessoItemService } from './services/acesso-item.service';
+import { EventoService } from './services/evento.service';
 
 import { TextMaskModule } from 'angular2-text-mask';
 import { EditarPaginaComponent } from './components/editar-pagina/editar-pagina.component';
@@ -38,6 +39,10 @@ import { ControleItemComponent } from './components/controle-item/controle-item.
 import { ModalItemComponent } from './components/modal-item/modal-item.component';
 import { ModalAltitemComponent } from './components/modal-altitem/modal-altitem.component';
 import { BuscaItemComponent } from './components/busca-item/busca-item.component';
+import { MeusEventosComponent } from './components/meus-eventos/meus-eventos.component';
+import { ModalItemEventoComponent } from './components/modal-item-evento/modal-item-evento.component';
+import { DetalhesComponent } from './components/detalhes/detalhes.component';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
@@ -53,7 +58,10 @@ const appRoutes: Routes = [
   {path:'home',component:PrincipalComponent},
   {path:'u/mensagens',component:MensagensComponent},
   {path:'u/controle-item',component:ControleItemComponent, canActivate:[AuthGuard]},
-  {path:'busca-item',component:BuscaItemComponent, canActivate:[AuthGuard]}
+  {path:'busca-item',component:BuscaItemComponent, canActivate:[AuthGuard]},
+  {path:'meus-eventos',component:MeusEventosComponent, canActivate:[AuthGuard]},
+  {path:'detalhes/:evento',component:DetalhesComponent, canActivate:[AuthGuard]},
+  {path:'pedidos',component:PedidosComponent, canActivate:[AuthGuard]}
 ];
 @NgModule({
   declarations: [
@@ -77,7 +85,11 @@ const appRoutes: Routes = [
     ControleItemComponent,
     ModalItemComponent,
     ModalAltitemComponent,
-    BuscaItemComponent
+    BuscaItemComponent,
+    MeusEventosComponent,
+    ModalItemEventoComponent,
+    DetalhesComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +104,12 @@ const appRoutes: Routes = [
     Ng2Bs3ModalModule,
     DataTablesModule
   ],
-  providers: [ValidarUsuarioService, AutenticacaoService, MensagemCounterService, AcessoItemService, AuthGuard],
+  providers: [ValidarUsuarioService, 
+                AutenticacaoService, 
+                MensagemCounterService, 
+                AcessoItemService,
+                EventoService,
+                AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
